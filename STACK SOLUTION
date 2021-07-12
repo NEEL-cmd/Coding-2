@@ -1,0 +1,133 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define CAPACITY 5
+int stack[CAPACITY], top = -1;
+void push(int);
+int pop(void);
+int isempty(void);
+int isfull(void);
+void peek(void);
+void display(void);
+void main(void)
+{
+	int ch, item;
+	while (1)
+	{
+		printf("1.push \n");
+		printf("2.pop \n");
+		printf("3.peek \n");
+		printf("4.display \n");
+		printf("5.quit \n");
+
+		printf("enter your choice: ");
+		scanf("%d", &ch);
+		switch (ch)
+		{
+		case 1:
+			printf("enter a element : ");
+			scanf("%d", &item);
+			push(item);
+			break;
+		case 2:
+			pop();
+			//if(item==0)
+			//  {
+			//	 printf("stack is underflow\n");
+			//  }
+			//else
+			//  {
+			//	 printf("popped item : %d\n",item);
+			//  }
+			break;
+		case 3:
+			peek();
+			break;
+
+		case 4:
+			display();
+			break;
+		case 5:
+			exit(0);
+
+		default:
+			printf("invalid input \n\n");
+		}
+	}
+}
+int isfull()
+{
+	if (top == CAPACITY - 1)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+void push(int ele)
+{
+	if (isfull())
+	{
+		printf("stack is overflow!!!\n");
+	}
+	else
+	{
+		top = top + 1;
+		stack[top] = ele;
+		printf("%d pushed \n", ele);
+	}
+}
+int isempty()
+{
+	if (top == -1)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+int pop()
+{
+	if (isempty())
+	{
+		//return 1;
+		printf("the stack is empty!!!");
+	}
+	else
+	{
+		//return 0;
+		printf("deleted element is : %d\n", stack[top]);
+		top = top - 1;
+	}
+}
+
+void peek()
+{
+	if (isempty())
+	{
+		printf("stack is empty \n");
+	}
+	else
+	{
+		printf("peek element : %d \n", stack[top]);
+	}
+}
+void display()
+{
+	if (isempty())
+	{
+		printf("stack is empty \n");
+	}
+	else
+	{
+		int i;
+		printf("stack elements : \n");
+		for (i = top; i >= 0; --i)
+		{
+			printf("%d \n", stack[i]);
+		}
+	}
+ }
